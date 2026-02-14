@@ -1,4 +1,3 @@
-/* BASE */
 body {
   margin: 0;
   padding: 20px;
@@ -9,29 +8,19 @@ body {
   justify-content: center;
   align-items: center;
 
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, sans-serif;
 
   background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  transition: background 0.5s ease;
   text-align: center;
+  transition: background 0.5s ease;
 }
 
-
-h1 {
-  font-size: clamp(32px, 5vw, 64px);
-  color: white;
-  text-shadow: 0 0 15px rgba(0,0,0,0.9),
-               0 0 25px rgba(0,0,0,0.7);
-  font-weight: 900;
-  margin-bottom: 40px;
-}
-
-
-
+/* Titre */
 h1 {
   font-size: 42px;
   color: white;
@@ -39,13 +28,13 @@ h1 {
   max-width: 90%;
 }
 
-/* BOUTONS */
+/* Boutons */
 .buttons {
   display: flex;
   gap: 40px;
-  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap; /* toujours côte à côte */
 }
 
 button {
@@ -56,6 +45,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 #oui {
@@ -72,23 +62,28 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* RESPONSIVE */
+/* Mobile adaptation */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 28px;
-  }
 
-  button {
-    font-size: 16px;
-    padding: 12px 20px;
+  h1 {
+    font-size: 26px;
   }
 
   .buttons {
-    gap: 20px;
+    gap: 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  body {
+    background-position: center top;
   }
 }
 
-/* CONFETTI */
+/* Confetti */
 .confetti-container {
   position: fixed;
   top: 0;
@@ -108,12 +103,8 @@ button:hover {
 }
 
 @keyframes fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(110vh) rotate(720deg);
-  }
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(720deg); }
 }
 
 .heart {
@@ -123,12 +114,6 @@ button:hover {
 }
 
 @keyframes float {
-  0% {
-    transform: scale(0.5);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
