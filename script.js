@@ -20,6 +20,8 @@ const excuses = [
   "Bado loatra mauvais bouton 🤦🏾‍♂️"
 ];
 
+
+/* Images associées aux excuses */
 const imagesNon = [
   "images/regard1.png",
   "images/regard2.jpg",
@@ -28,17 +30,21 @@ const imagesNon = [
   "images/regard5.webp"
 ];
 
+/* Image finale quand OUI validé */
 const imageOui = "images/victoire.png";
 
 
-// ---------- NON ----------
-nonBtn.addEventListener("click", function () {
+// ----- LOGIQUE NON -----
+nonBtn.addEventListener("click", function() {
 
   compteurNon++;
+
   const index = (compteurNon - 1) % excuses.length;
 
+  // Texte dans l’ordre
   nonBtn.textContent = excuses[index];
 
+  // Image dans l’ordre
   body.style.background = `
     linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
     url('${imagesNon[index]}') center/cover no-repeat
@@ -53,17 +59,20 @@ nonBtn.addEventListener("click", function () {
   // NON diminue
   fontSizeNon -= 1;
   paddingNon -= 1;
-
   if (fontSizeNon < 6) fontSizeNon = 6;
   if (paddingNon < 2) paddingNon = 2;
-
   nonBtn.style.fontSize = fontSizeNon + "px";
   nonBtn.style.padding = paddingNon + "px 20px";
+
+
+
 });
 
 
-// ---------- OUI ----------
-ouiBtn.addEventListener("click", function () {
+
+// ----- LOGIQUE OUI -----
+
+ouiBtn.addEventListener("click", function() {
 
   compteurOui++;
 
@@ -72,21 +81,25 @@ ouiBtn.addEventListener("click", function () {
     return;
   }
 
-  if (compteurOui < 3) return;
+  if (compteurOui < 3) {
+    return;
+  }
 
+  // À partir du 3e clic
   titre.textContent = "Akory kai 😂😂😂 bisous 🫶🏾";
   document.querySelector(".buttons").style.display = "none";
+  body.style.background = `url('${imageOui}') center/cover no-repeat`;
+  lancerConfetti();
 
   body.style.background = `
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url('${imageOui}') center/cover no-repeat
-  `;
+  linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+  url('${imageOui}') center/cover no-repeat
+`;
 
-  lancerConfetti();
 });
 
 
-// ---------- CONFETTI ----------
+// ----- CONFETTI -----
 function lancerConfetti() {
 
   const container = document.createElement("div");
@@ -116,5 +129,7 @@ function lancerConfetti() {
     container.appendChild(heart);
   }
 
-  setTimeout(() => container.remove(), 4000);
+  setTimeout(() => {
+    container.remove();
+  }, 4000);
 }
